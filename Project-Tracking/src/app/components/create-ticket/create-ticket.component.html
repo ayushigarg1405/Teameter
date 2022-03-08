@@ -1,0 +1,39 @@
+<form [formGroup]="createForm" style="width: 500px;">
+    <div>
+        <label>Create Ticket </label>
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select developer</mat-label>
+        <mat-select required [(ngModel)]="selectedUser" formControlName="userId">
+            <mat-option *ngFor="let user of users" [value]="user.value">
+                {{user.viewvalue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" style="padding: 5px;">
+        <mat-label>Title</mat-label>
+        <input required matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" style="padding: 5px;">
+        <mat-label>Description</mat-label>
+        <input required matInput placeholder="Desciption" formControlName="description">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" style="padding: 5px;">
+        <mat-label>Comments</mat-label>
+        <input matInput placeholder="Comments" formControlName="comments">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="fill" style="padding: 5px;">
+        <mat-label>Estimated Time</mat-label>
+        <input required matInput placeholder="Estimated Time" formControlName="estimatedTime">
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+    <p style="font-weight: 400;font-size: 30px;color: #3f51b5;">{{alert}}</p>
+    <p style="font-weight: 300;font-size: 20px;color: #3f51b5;">{{warning}}</p>
+    <button mat-raised-button color="primary" (click)="addTicket()">Create</button>
+</form>

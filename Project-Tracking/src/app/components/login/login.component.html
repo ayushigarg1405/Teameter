@@ -1,0 +1,12 @@
+<div class="container">
+    <h2 style="font-family: 'Shippori Mincho B1', serif;font-size:30px;">Welcome to Project Tracking System</h2>
+    <mat-card class="login-card">
+        <mat-card-title style="margin: 25px;font-size: 30px;font-family: 'Lato', sans-serif;font-weight: 1000;">LOGIN</mat-card-title>
+        <input type="text" placeholder="Enter username" class="input-field" [(ngModel)]="username" style="width: 200px;height: 40px;font-size: 20px;" />
+        <input type="password" placeholder="Enter password" class="input-field" [(ngModel)]="password" style="width: 200px;height: 40px;font-size: 20px;"/>
+        <mat-card-subtitle>{{warning}}</mat-card-subtitle>
+        <button mat-raised-button color="primary"
+            style="background-color: lightblue;margin: 10px;color: black;margin-top: 5px;width: 230px;height: 40px;box-shadow:darkslategrey 0 0 10px;font-size: 20px;"
+            (click)="Login()">Login</button>
+    </mat-card>
+</div>

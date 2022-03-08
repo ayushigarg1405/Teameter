@@ -1,0 +1,134 @@
+<mat-toolbar class="navbar">
+  <span class="material-icons">dashboard</span>
+  <span style="padding: 5px;font-size: 30px;font-family: 'Lato', sans-serif;font-weight: 450;">Welcome Dharshna!!</span>
+  <span class="example-spacer"></span>
+  <button (click)="getfilter($event)" id="todo" class="button">To-Do Tickets</button>
+  <button (click)="getfilter($event)" id="inprogress" class="button">In-Progress Tickets</button>
+  <button (click)="getfilter($event)" id="done" class="button">Done Tickets</button>
+  <button (click)="openCreateTicket()" class="button">Create Ticket</button>
+  <a routerLink=""><button mat-raised-button color="primary" class="history"
+      style="background-color: lightblue;color: black;"><span class="material-icons">
+        logout
+      </span>Logout</button></a>
+</mat-toolbar>
+<mat-divider style="border-top-color:lightblue;border-width: 3px;"></mat-divider>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="ticketsexist else notickets">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let ticket of receivedtickets">
+      <mat-card class="mat">
+        <mat-card-title style="padding: 10px;font-weight: 400;"><span class="material-icons">
+            label_important
+          </span>Task: {{ticket.title}}</mat-card-title>
+        <mat-card-subtitle style="padding-left: 10px;">User Id : {{ticket.userId}}</mat-card-subtitle>
+        <mat-card-subtitle style="padding-left: 10px;">User Name : {{users[0][ticket.userId]}}</mat-card-subtitle>
+        <mat-card-subtitle style="padding-left: 10px;">Ticket Id : {{ticket.ticketId}}</mat-card-subtitle>
+        <mat-card-content style="padding-left:10px;font-weight: 400;">
+          Current Status: {{ticket.status | uppercase}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;font-size: 22px;font-weight: 500;">
+          Description: {{ticket.description}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;">
+          Comments: {{ticket.comments}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;">
+          <span class="material-icons">
+            access_time
+          </span>
+          Estimated time: {{ticket.estimatedTime}} h
+        </mat-card-content>
+
+
+      </mat-card>
+    </div>
+
+  </div>
+  <mat-divider style="border-top-color:lightblue;border-width: 3px;"></mat-divider>
+
+  <ng-template #notickets>
+    <strong>
+      <h1>Zero Tickets In This Status</h1>
+    </strong>
+  </ng-template>
+
+</div>
+
+<div class="content">
+  <mat-accordion>
+    <div *ngFor="let ticket of filtertickets" style="padding: 15px;">
+      <mat-expansion-panel hideToggle style="padding: 10px;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size: 18px;font-family: 'Montserrat', sans-serif;padding-top: 10px;">
+            <span class="material-icons" style="margin-bottom: 10px;padding-right: 10px;">
+              account_circle
+            </span>Team Member Name: {{users[0][ticket[0]["userId"]]}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Click here to see tickets assigned for this user
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="content">
+          <div fxLayout="row wrap" fxLayoutGap="16px grid">
+
+            <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let i of ticket">
+              <div *ngIf="i.title!==undefined else noticketsforuser">
+                <div>
+
+                  <mat-card class="mat"
+                    (click)="navigate(i.ticketId,i.title,i.description,i.comments,i.status,i.estimatedTime,i.userId)">
+
+                    <mat-card-title style="padding: 10px;font-weight: 400;"><span class="material-icons">
+                        label_important
+                      </span>Task: {{i.title}}
+                    </mat-card-title>
+
+                    <mat-card-subtitle style="padding-left: 10px;">User Id : {{i.userId}}</mat-card-subtitle>
+
+                    <mat-card-subtitle style="padding-left: 10px;">Ticket Id : {{i.ticketId}}</mat-card-subtitle>
+
+                    <mat-card-content style="padding-left:10px;font-weight: 400;">
+                      Current Status: {{i.status | uppercase}}
+                    </mat-card-content>
+
+                    <mat-card-content style="padding-left: 10px;font-size: 22px;font-weight: 500;">
+                      Description: {{i.description}}
+                    </mat-card-content>
+
+                    <mat-card-content style="padding-left: 10px;">
+                      Comments: {{i.comments}}
+                    </mat-card-content>
+
+                    <mat-card-content style="padding-left: 10px;">
+                      <span class="material-icons">
+                        access_time
+                      </span>
+                      Estimated time: {{i.estimatedTime}} h
+
+                    </mat-card-content>
+
+                  </mat-card>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+
+  <ng-template #noticketsforuser>
+    <strong>
+      <h1>Zero Tickets for This User </h1>
+    </strong>
+  </ng-template>
+</div>
+
+
+
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,32 @@
+<form [formGroup]="ticketForm">
+  <div>
+    <label>Log Work </label>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" style="padding: 5px;">
+      <mat-label>Hours Spent</mat-label>
+      <input matInput required placeholder="Hours Spent" formControlName="timeSpent" type="number">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill" style="padding: 5px;">
+      <mat-label>Hours Left</mat-label>
+      <input matInput formControlName="timeRemaining">{{lastRemainingTime}}
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="fill" style="padding: 5px;">
+      <mat-label>Date</mat-label>
+      <input matInput required placeholder="Date" formControlName="date" type="date" data-date-format="YYYY-MM-DD">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" appearance="outline" style="width:400px;height: 100px;padding: 10px;">
+      <mat-label>description</mat-label>
+      <input matInput required placeholder="Desciption" formControlName="description">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-divider></mat-divider>
+    <p style="font-weight: 300;font-size: 20px;color: #3f51b5;">{{warning}}</p>
+    <button mat-raised-button color="accent" (click)="addToLog()">Save</button>
+  </div>
+</form>

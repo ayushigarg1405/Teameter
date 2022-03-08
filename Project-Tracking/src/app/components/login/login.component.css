@@ -1,0 +1,23 @@
+.container{
+    height: 100%;
+    background-color: lightblue;
+    text-align: center;
+}
+.login-card{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 250px;
+    text-align: center;
+}
+
+.input-field{
+    padding: 10px;
+    margin: 10px;
+    border-color: rgb(156, 215, 235);
+    border-width: 1.5px;
+    border-style: solid;
+    border-radius: 5px;
+    text-align: center;
+}

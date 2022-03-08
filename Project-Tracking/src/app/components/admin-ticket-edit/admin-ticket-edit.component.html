@@ -1,0 +1,91 @@
+<a (click)="goback()" style="cursor: pointer;padding-left: 10px;padding: 5px;">
+    <span class="material-icons">dashboard</span><span style="font-size: 25px;font-family: 'Lato', sans-serif;">
+        Back To Dashboard
+    </span></a>
+<form class="form" [formGroup]="ticketForm">
+    <div *ngFor="let ticket of received_data">
+        <mat-card style="width: 700px;margin-left: 15%;" class="ticket-details">
+
+            <mat-card-title style="padding:10px">Ticket Details<span class="material-icons" style="padding-left: 5px;">
+                    info
+                </span></mat-card-title>
+            <mat-card-subtitle style="padding: 5px;padding-left: 10px;">Ticket Id: {{ticket.ticketId}}
+            </mat-card-subtitle>
+            <mat-card-subtitle style="padding-left: 10px;font-size: 20px;font-weight: 500;"><span class="material-icons"
+                    style="padding-right: 5px;">
+                    star
+                </span>Status: {{ticket.status}} </mat-card-subtitle>
+
+            <mat-form-field appearance="outline" style="width: 300px">
+                <mat-label style="font-size: 20px;font-weight: 600;"><span class="material-icons"
+                        style="padding-right: 5px;">
+                        stream
+                    </span>Title: </mat-label>
+                <textarea matInput style="font-size: 20px;" formControlName="title">{{ticket.title}} </textarea>
+            </mat-form-field><br />
+
+            <mat-form-field appearance="outline" style="width: 300px;">
+                <mat-label style="font-size: 20px;font-weight: 600;"><span class="material-icons"
+                        style="padding-right: 5px;">
+                        create
+                    </span>Description: </mat-label>
+                <textarea matInput style="font-size: 20px;" formControlName="desc">{{ticket.description}} </textarea>
+            </mat-form-field><br />
+
+            <mat-form-field appearance="outline" style="width: 300px">
+                <mat-label style="font-size: 20px;font-weight: 600;"><span class="material-icons"
+                        style="padding-right: 5px;">
+                        access_time
+                    </span>Time Allocated: </mat-label>
+                <textarea matInput style="font-size: 20px;"
+                    formControlName="estimatedTime">{{ticket.estimatedTime}} </textarea>
+            </mat-form-field><br />
+            <mat-form-field appearance="outline" style="width:400px;height: 50px;padding: 10px;">
+                <mat-label style="font-size: 20px;"><span class="material-icons" style="padding-right: 5px;">
+                        comment
+                    </span>Comment: </mat-label>
+                <textarea matInput style="font-size: 20px;" formControlName="com">{{ticket.comments}} </textarea>
+            </mat-form-field><br><br>
+            <mat-card-actions style="padding: 10px;">
+                <p style="font-weight: 400;font-size: 30px;color: #3f51b5;">{{alert}}</p>
+                <button mat-raised-button color="primary" (click)="updateAdmin()">Update</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</form>
+
+<div class="container1">
+    <span style="padding: 15px;font-size: 40px;font-family: 'Neucha', cursive;font-weight: 450;margin-left: 40%;"><span
+            class="material-icons" style="font-size: 40px;padding-right: 10px;">
+            pending_actions
+        </span>Log Work for the ticket</span>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid" style="padding: 10px;" *ngIf="logExist else noLogs">
+        <div *ngFor="let log of logs">
+            <mat-card class="mat">
+                <mat-card-title style="padding: 10px;font-weight: 400;"><span class="material-icons">
+                        input
+                    </span>{{log.description}}</mat-card-title>
+                <mat-card-subtitle style="padding-left: 10px;"><span class="material-icons">
+                        calendar_today
+                    </span>Date: {{log.date}} </mat-card-subtitle>
+                <mat-card-content style="padding-left: 10px;"><span class="material-icons">
+                        hourglass_bottom
+                    </span>Time spent: {{log.timeSpent}} </mat-card-content>
+                <mat-card-content style="padding-left: 10px;"><span class="material-icons">
+                        hourglass_top
+                    </span>Time remaining: {{log.timeRemaining}} </mat-card-content>
+            </mat-card>
+
+        </div>
+
+
+
+    </div>
+
+    <ng-template #noLogs>
+        <br /><br /><br />
+        <span
+            style="padding: 15px;font-size: 30px;font-family: 'Satisfy', cursive;font-weight: 450;margin-left: 43%;">No
+            work logged yet!</span>
+    </ng-template>
+</div>

@@ -1,0 +1,56 @@
+<mat-toolbar class="toolbar">
+  <span class="material-icons">dashboard</span>
+  <span style="padding: 5px;font-size: 30px;font-family: 'Lato', sans-serif;font-weight: 450;">Welcome {{login.username
+    | titlecase}} !!</span>
+  <span class="example-spacer"></span>
+  <span style="padding: 7px;font-family: 'Lato', sans-serif;padding-right: 20px;font-weight: 400;"> Number Of Active
+    Tickets - {{todotickets.length}}</span>
+  <button mat-raised-button color="primary" class="history" (click)="goToUserHistory()"
+    style="background-color: lightblue;color: black;margin-right: 10px;"><span class="material-icons">
+      done_all
+    </span>Done Tickets</button>
+  <a routerLink=""><button mat-raised-button color="primary" class="history"
+      style="background-color: lightblue;color: black;"><span class="material-icons">
+        logout
+      </span>Logout</button></a>
+</mat-toolbar>
+<mat-divider style="border-top-color:lightblue;border-width: 3px;"></mat-divider>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="ticketsexist else notickets">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let ticket of todotickets">
+      <mat-card class="mat"
+        (click)="navigate(ticket.ticketId,ticket.title,ticket.description,ticket.comments,ticket.status,ticket.estimatedTime,ticket.userId)">
+
+        <mat-card-title style="padding: 10px;font-weight: 400;"><span class="material-icons">
+            label_important
+          </span>Task: {{ticket.title}}</mat-card-title>
+        <mat-card-subtitle style="padding-left: 10px;">Ticket Id : {{ticket.ticketId}}</mat-card-subtitle>
+        <mat-card-content style="padding-left:10px;font-weight: 400;">
+          Current Status: {{ticket.status | uppercase}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;font-size: 22px;font-weight: 500;">
+          Description: {{ticket.description}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;">
+          <span class="material-icons">
+            comment
+          </span>{{ticket.comments}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;">
+          <span class="material-icons">
+            access_time
+          </span>
+          Estimated time: {{ticket.estimatedTime}} h
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #notickets>
+    <strong>
+      <h1 style="margin-left: 600px;margin-top: 200px;">Zero Active Tickets</h1>
+    </strong>
+  </ng-template>
+
+
+</div>

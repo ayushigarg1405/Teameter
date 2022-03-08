@@ -1,0 +1,40 @@
+<mat-toolbar class="toolbar">
+  <a (click)="goBack()" style="cursor: pointer;">
+    <span class="material-icons">dashboard</span></a>
+  <span style="padding: 5px;font-size: 25px;font-family: 'Lato', sans-serif;font-weight: 450;">Number Of Completed
+    Tickets - {{donetickets.length}}</span>
+</mat-toolbar>
+<mat-divider style="border-top-color:lightblue;border-width: 3px;"></mat-divider>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="doneticketsexist else notickets">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let ticket of donetickets">
+      <mat-card class="mat">
+
+        <mat-card-title style="padding: 10px;font-weight: 400;"><span class="material-icons">
+            label_important
+          </span>Task: {{ticket.title}}</mat-card-title>
+        <mat-card-subtitle style="padding-left: 10px;">Ticket Id : {{ticket.ticketId}}</mat-card-subtitle>
+
+        <mat-card-content style="padding-left: 10px;font-size: 22px;font-weight: 500;">
+          Description: {{ticket.description}}
+        </mat-card-content>
+        <mat-card-content style="padding-left: 10px;">
+          Comments: {{ticket.comments}}
+        </mat-card-content>
+
+        <mat-card-content style="padding-left: 10px;">
+          <span class="material-icons">
+            access_time
+          </span>
+          Time taken: {{ticket.estimatedTime}} h
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #notickets>
+    <strong>
+      <h1 style="margin-left: 600px;margin-top: 200px;">Zero Completed tickets</h1>
+    </strong>
+  </ng-template>
+</div>

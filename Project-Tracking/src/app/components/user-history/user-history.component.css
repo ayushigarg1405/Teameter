@@ -1,0 +1,23 @@
+.content {
+  padding: 16px;
+  background-color: lightblue;
+  padding-top: 25px;
+  margin-top: 5px;
+  height: 100vh;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat {
+  box-shadow: darkslategrey 0 0 5px;
+}
+
+
+.toolbar {
+
+  width: auto;
+  height: 50px;
+
+}

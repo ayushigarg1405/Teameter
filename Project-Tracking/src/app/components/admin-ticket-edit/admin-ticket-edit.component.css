@@ -1,0 +1,36 @@
+.editdata{
+    position: relative;
+    top: 100px;
+    left: 300px;
+    
+}
+
+.form{
+    height: 100%;
+    background-color: lightblue;
+}
+.ticket-details{
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%,-50%);
+}
+
+
+.container{
+    height: 500px;
+    background-color: lightblue;
+}
+
+.mat {
+    box-shadow: darkslategrey 0 0 5px;
+    width: 400px;
+    height: auto;
+
+  }
+
+  .container1 {
+    height: 100%;
+    background-color: lightblue;
+}
+
